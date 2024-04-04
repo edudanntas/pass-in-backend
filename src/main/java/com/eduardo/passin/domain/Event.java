@@ -1,4 +1,4 @@
-package com.eduardo.passin.domain.entities;
+package com.eduardo.passin.domain;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

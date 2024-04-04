@@ -1,6 +1,6 @@
 package com.eduardo.passin.dto.event;
 
-import com.eduardo.passin.domain.entities.Event;
+import com.eduardo.passin.domain.Event;
 import lombok.Getter;
 
 @Getter

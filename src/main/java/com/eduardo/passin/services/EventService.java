@@ -1,7 +1,7 @@
 package com.eduardo.passin.services;
 
-import com.eduardo.passin.domain.entities.Attendee;
-import com.eduardo.passin.domain.entities.Event;
+import com.eduardo.passin.domain.Attendee;
+import com.eduardo.passin.domain.Event;
 import com.eduardo.passin.dto.event.EventIdDTO;
 import com.eduardo.passin.dto.event.EventRequestDTO;
 import com.eduardo.passin.dto.event.EventResponseDTO;

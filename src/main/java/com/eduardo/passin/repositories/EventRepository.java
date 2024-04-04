@@ -1,6 +1,6 @@
 package com.eduardo.passin.repositories;
 
-import com.eduardo.passin.domain.entities.Event;
+import com.eduardo.passin.domain.Event;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface EventRepository extends JpaRepository<Event, String> {
