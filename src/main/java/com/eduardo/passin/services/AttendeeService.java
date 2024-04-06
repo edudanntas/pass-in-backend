@@ -1,6 +1,7 @@
 package com.eduardo.passin.services;
 
 import com.eduardo.passin.domain.attendee.Attendee;
+import com.eduardo.passin.domain.attendee.exception.AttendeeAlreadyRegisteredException;
 import com.eduardo.passin.domain.checkin.CheckIn;
 import com.eduardo.passin.dto.attendee.AttendeeDetailDTO;
 import com.eduardo.passin.dto.attendee.AttendeeListResponseDTO;
@@ -41,5 +42,16 @@ public class AttendeeService {
                 }).toList();
 
         return new AttendeeListResponseDTO(attendeeDetailDTOList);
+    }
+
+    public void checkSubscriptionAttendee(String email, String eventId){
+        Optional<Attendee> registeredAttendee = this.attendeeRepository.findByEmailAndEventId(email, eventId);
+
+        if (registeredAttendee.isPresent()) throw new AttendeeAlreadyRegisteredException("Attendee already registered");
+    }
+
+    public Attendee registerAttendee(Attendee newAttendee){
+        this.attendeeRepository.save(newAttendee);
+        return newAttendee;
     }
 }
