@@ -46,7 +46,7 @@ public class EventService {
         Event event = this.getEventById(eventId);
         List<Attendee> attendees = attendeeService.getAttendeeListFromEvent(eventId);
 
-        if (event.getMaximumAttendees() <= attendees.size()) throw new EventFullException("Event with Id: " + eventId + " is full");
+        if (event.getMaximumAttendees() <= attendees.size()) throw new EventFullException("Event is full");
 
         Attendee newAttendee = new Attendee();
         newAttendee.setName(attendeeRequestDTO.name());

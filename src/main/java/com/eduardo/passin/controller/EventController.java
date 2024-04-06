@@ -1,6 +1,8 @@
 package com.eduardo.passin.controller;
 
+import com.eduardo.passin.dto.attendee.AttendeeIdDTO;
 import com.eduardo.passin.dto.attendee.AttendeeListResponseDTO;
+import com.eduardo.passin.dto.attendee.AttendeeRequestDTO;
 import com.eduardo.passin.dto.event.EventIdDTO;
 import com.eduardo.passin.dto.event.EventRequestDTO;
 import com.eduardo.passin.dto.event.EventResponseDTO;
@@ -38,6 +40,15 @@ public class EventController {
         URI uri = uriComponentsBuilder.path("/events/{id}").buildAndExpand(eventIdDTO.id()).toUri();
 
         return ResponseEntity.created(uri).body(eventIdDTO);
+    }
+
+    @PostMapping("/{eventId}/attendees")
+    public ResponseEntity<AttendeeIdDTO> createEvent(@PathVariable String eventId, @RequestBody AttendeeRequestDTO attendeeRequestDTO, UriComponentsBuilder uriComponentsBuilder) {
+        AttendeeIdDTO attendeeIdDTO = this.eventService.registerAttendeeOnEvent(eventId, attendeeRequestDTO);
+
+        URI uri = uriComponentsBuilder.path("/attendees/{attendeeId}/badge").buildAndExpand(attendeeIdDTO.id()).toUri();
+
+        return ResponseEntity.created(uri).body(attendeeIdDTO);
     }
 
     @GetMapping("/attendees/{id}")

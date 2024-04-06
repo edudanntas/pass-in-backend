@@ -1,4 +1,4 @@
 package com.eduardo.passin.dto.exception;
 
-public record ExceptionDTO(String message, Integer statusCode) {
+public record ExceptionDTO(String message) {
 }
