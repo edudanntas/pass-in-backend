@@ -1,7 +1,7 @@
 FROM ubuntu:latest AS build
 LABEL authors="eduardo dantas"
 
-RUN apt-get-update
+RUN apt-get update
 RUN apt-get install openjdk-17-jdk -y
 COPY . .
 
