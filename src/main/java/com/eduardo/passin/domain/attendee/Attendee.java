@@ -1,5 +1,6 @@
-package com.eduardo.passin.domain;
+package com.eduardo.passin.domain.attendee;
 
+import com.eduardo.passin.domain.event.Event;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

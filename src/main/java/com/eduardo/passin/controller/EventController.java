@@ -18,13 +18,13 @@ public class EventController {
     private final EventService service;
 
     @GetMapping("/{id}")
-    public ResponseEntity<EventResponseDTO> getEventDetails(@PathVariable String id){
+    public ResponseEntity<EventResponseDTO> getEventDetails(@PathVariable String id) {
         EventResponseDTO event = this.service.getEventDetails(id);
         return ResponseEntity.ok(event);
     }
 
     @PostMapping
-    public ResponseEntity<EventIdDTO> createEvent(@RequestBody EventRequestDTO requestDTO, UriComponentsBuilder uriComponentsBuilder){
+    public ResponseEntity<EventIdDTO> createEvent(@RequestBody EventRequestDTO requestDTO, UriComponentsBuilder uriComponentsBuilder) {
         EventIdDTO eventIdDTO = this.service.createEvent(requestDTO);
 
         URI uri = uriComponentsBuilder.path("/events/{id}").buildAndExpand(eventIdDTO.id()).toUri();

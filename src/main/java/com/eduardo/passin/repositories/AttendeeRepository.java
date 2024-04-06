@@ -1,6 +1,6 @@
 package com.eduardo.passin.repositories;
 
-import com.eduardo.passin.domain.Attendee;
+import com.eduardo.passin.domain.attendee.Attendee;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

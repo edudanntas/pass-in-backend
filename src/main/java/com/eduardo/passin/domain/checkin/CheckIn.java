@@ -1,5 +1,6 @@
-package com.eduardo.passin.domain;
+package com.eduardo.passin.domain.checkin;
 
+import com.eduardo.passin.domain.attendee.Attendee;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
