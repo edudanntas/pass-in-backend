@@ -2,7 +2,7 @@ package com.eduardo.passin.services;
 
 import com.eduardo.passin.domain.attendee.Attendee;
 import com.eduardo.passin.domain.checkin.CheckIn;
-import com.eduardo.passin.domain.checkin.CheckInAlreadyExistException;
+import com.eduardo.passin.domain.checkin.exceptions.CheckInAlreadyExistException;
 import com.eduardo.passin.repositories.CheckInRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

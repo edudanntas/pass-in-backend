@@ -4,10 +4,12 @@ import com.eduardo.passin.domain.attendee.Attendee;
 import com.eduardo.passin.domain.attendee.exception.AttendeeAlreadyRegisteredException;
 import com.eduardo.passin.domain.attendee.exception.AttendeeNotFoundException;
 import com.eduardo.passin.domain.checkin.CheckIn;
+import com.eduardo.passin.domain.checkin.exceptions.CheckinNotFoundException;
 import com.eduardo.passin.dto.attendee.AttendeeBadgeDTO;
 import com.eduardo.passin.dto.attendee.AttendeeBadgeResponseDTO;
 import com.eduardo.passin.dto.attendee.AttendeeDetailDTO;
 import com.eduardo.passin.dto.attendee.AttendeeListResponseDTO;
+import com.eduardo.passin.dto.checkin.CheckInDTO;
 import com.eduardo.passin.repositories.AttendeeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -67,7 +69,7 @@ public class AttendeeService {
 
         String uri = uriComponentsBuilder.path("/attendees/{attendeeId}/check-in").buildAndExpand(attendeeId).toUriString();
 
-        AttendeeBadgeDTO attendeeBadgeDTO = new AttendeeBadgeDTO(attendee.getName(), attendee.getEmail(), uri, attendee.getEvent().getId());
+        AttendeeBadgeDTO attendeeBadgeDTO = new AttendeeBadgeDTO(attendee.getId(), attendee.getName(), attendee.getEmail(), uri, attendee.getEvent().getId(), attendee.getEvent().getTitle());
 
         return new AttendeeBadgeResponseDTO(attendeeBadgeDTO);
     }
@@ -76,5 +78,13 @@ public class AttendeeService {
         Attendee attendee = this.getAttendeeById(attendeeId);
 
         this.checkInService.registerCheckIn(attendee);
+    }
+
+    public CheckInDTO getCheckinByAttendee(String attendeeId) {
+        Optional<CheckIn> attendee = this.checkInService.getCheckinByAttendeeId(attendeeId);
+
+        if (attendee.isEmpty()) throw new CheckinNotFoundException("Attendee not found with ID: " + attendeeId);
+
+        return new CheckInDTO(attendee.get().getId());
     }
 }

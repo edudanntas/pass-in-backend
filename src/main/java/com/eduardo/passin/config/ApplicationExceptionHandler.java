@@ -2,7 +2,8 @@ package com.eduardo.passin.config;
 
 import com.eduardo.passin.domain.attendee.exception.AttendeeAlreadyRegisteredException;
 import com.eduardo.passin.domain.attendee.exception.AttendeeNotFoundException;
-import com.eduardo.passin.domain.checkin.CheckInAlreadyExistException;
+import com.eduardo.passin.domain.checkin.exceptions.CheckInAlreadyExistException;
+import com.eduardo.passin.domain.checkin.exceptions.CheckinNotFoundException;
 import com.eduardo.passin.domain.event.exceptions.EventFullException;
 import com.eduardo.passin.domain.event.exceptions.EventNotFoundException;
 import com.eduardo.passin.dto.exception.ExceptionDTO;
@@ -21,6 +22,11 @@ public class ApplicationExceptionHandler {
     @ExceptionHandler(AttendeeNotFoundException.class)
     public ResponseEntity<Void> handleAttendeeNotFoundException(AttendeeNotFoundException exception){
         return ResponseEntity.notFound().build();
+    }
+
+    @ExceptionHandler(CheckinNotFoundException.class)
+    public ResponseEntity<Void> handleCheckinNotFoundException(CheckinNotFoundException exception){
+        return ResponseEntity.noContent().build();
     }
 
     @ExceptionHandler(EventFullException.class)

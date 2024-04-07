@@ -1,6 +1,7 @@
 package com.eduardo.passin.controller;
 
 import com.eduardo.passin.dto.attendee.AttendeeBadgeResponseDTO;
+import com.eduardo.passin.dto.checkin.CheckInDTO;
 import com.eduardo.passin.services.AttendeeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -30,5 +31,11 @@ public class AttendeeController {
         this.attendeeService.checkInAttendee(attendeeId);
         URI uri = uriComponentsBuilder.path("/attendees/{attendeeId}/badge").buildAndExpand(attendeeId).toUri();
         return ResponseEntity.created(uri).build();
+    }
+
+    @GetMapping("/{attendeeId}/check-in")
+    public ResponseEntity<CheckInDTO> getCheckin(@PathVariable String attendeeId){
+        CheckInDTO checkInDTO = this.attendeeService.getCheckinByAttendee(attendeeId);
+        return ResponseEntity.ok(checkInDTO);
     }
 }
