@@ -36,5 +36,8 @@ jobs:
       - name: Pull image from DockerHub
         run: docker pull edudanntas/pass-in:latest
 
+      - name: Remove docker Container
+        run: docker rm -f pass-in
+
       - name: Run docker Container
         run: docker run -d -p 8080:8080 -e DATABASE_URL=${{secrets.DATABASE_URL}} -e DATABASE_USER=${{secrets.DATABASE_USER}} -e DATABASE_PSS='${{secrets.DATABASE_PSS}}' -e DATABASE_NAME=${{secrets.DATABASE_NAME}} --name pass-in edudanntas/pass-in
