@@ -28,3 +28,13 @@ jobs:
 
       - name: Push Docker image
         run: docker push edudanntas/pass-in
+
+  deploy:
+    needs: build
+    runs-on: self-hosted
+    steps:
+      - name: Pull image from DockerHub
+        run: docker pull edudanntas/pass-in:latest
+
+      - name: Run docker Container
+        run: docker run -d -p 8080:8080 -e DATABASE_URL=${{secrets.DATABASE_URL}} -e DATABASE_USER=${{secrets.DATABASE_USER}} -e DATABASE_PSS='${{secrets.DATABASE_PSS}}' -e DATABASE_NAME=${{secrets.DATABASE_NAME}} --name pass-in edudanntas/pass-in
