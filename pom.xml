@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.eduardo</groupId>
     <artifactId>pass-in</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>pass-in</name>
     <description>pass-in</description>
     <properties>

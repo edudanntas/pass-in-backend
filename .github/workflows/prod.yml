@@ -10,3 +10,21 @@ jobs:
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: '17'
+
+      - name: Build Project
+        run: mvn clean install -DskipTests
+
+      - name: Login DockerHub
+        run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
+
+      - name: Build Docker image
+        run: docker build -t edudanntas/pass-in .
+
+      - name: Push Docker image
+        run: docker push edudanntas/pass-in
